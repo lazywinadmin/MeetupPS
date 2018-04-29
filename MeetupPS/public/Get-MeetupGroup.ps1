@@ -1,5 +1,4 @@
-﻿function Get-MeetupGroup
-{
+﻿function Get-MeetupGroup {
 <#
 .SYNOPSIS
     Retrieve Meetup group information
@@ -10,12 +9,19 @@
 .NOTES
     https://github.com/lazywinadmin/MeetupPS
 #>
-[CmdletBinding()]
-PARAM(
-    [Parameter(Mandatory=$true)]
-    $GroupName)
+    [CmdletBinding()]
+    PARAM(
+        [Parameter(Mandatory = $true)]
+        $GroupName)
 
-    $GroupObject = invoke-restmethod -uri "https://api.meetup.com/$GroupName" -UseDefaultCredentials
+    TRY {
+        $FunctionName = (Get-Variable -name MyInvocation -Scope 0 -ValueOnly).MyCommand
 
-    Write-Output -InputObject $GroupObject
+        $Url = "https://api.meetup.com/$GroupName"
+        Write-Verbose -Message "[$FunctionName] Querying Url = '$Url'"
+        $GroupObject = invoke-restmethod -uri $Url -UseDefaultCredentials
+
+        Write-Output -InputObject $GroupObject
+    }
+    Catch {$PSCmdlet.ThrowTerminatingError($_)}
 }

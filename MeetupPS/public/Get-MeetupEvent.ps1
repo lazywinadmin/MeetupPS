@@ -1,5 +1,4 @@
-﻿function Get-MeetupEvent
-{
+﻿function Get-MeetupEvent {
 <#
 .SYNOPSIS
     Retrieve Meetup event for a specific group
@@ -17,19 +16,25 @@
 .NOTES
     https://github.com/lazywinadmin/MeetupPS
 #>
-[CmdletBinding()]
-PARAM(
-    [Parameter(Mandatory=$true)]
-    $GroupName,
+    [CmdletBinding()]
+    PARAM(
+        [Parameter(Mandatory = $true)]
+        $GroupName,
 
-    [ValidateSet("cancelled", "draft", "past", "proposed", "suggested", "upcoming")]
-    $Status = 'upcoming',
+        [ValidateSet("cancelled", "draft", "past", "proposed", "suggested", "upcoming")]
+        $Status = 'upcoming',
 
-    $page = 200
+        $page = 200
 
-)
+    )
+    TRY {
+        $FunctionName = (Get-Variable -name MyInvocation -Scope 0 -ValueOnly).MyCommand
 
-    $events = invoke-restmethod -uri "https://api.meetup.com/$GroupName/events?status=$Status&page=$page" -UseDefaultCredentials
+        $Url = "https://api.meetup.com/$GroupName/events?status=$Status&page=$page"
+        Write-Verbose -Message "[$FunctionName] Querying Url = '$Url'"
+        $events = invoke-restmethod -uri $Url -UseDefaultCredentials
 
-    Write-Output -InputObject $events
+        Write-Output -InputObject $events
+    }
+    catch {$PSCmdlet.ThrowTerminatingError($_)}
 }
