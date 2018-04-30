@@ -51,7 +51,7 @@ Once the Oauth Consumer is created, copy the Key and the Secret. This will be us
 
 ![image-center](/media/MeetupPS-RegisterOauthConsumer02.png)
 
-<a name="Authenticate"/>
+<a name="Authentication"/>
 
 ## Connecting to the Meetup.com API
 
