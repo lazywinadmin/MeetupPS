@@ -69,7 +69,7 @@ Note: This will leverage two private functions of the module:
 * `Get-OauthCode`
 * `Get-OauthAccessToken`
 
-This will then prompt your to connect to Meetup.
+This will then prompt you to connect to Meetup.
 
 ![image-center](/media/MeetupPS-Set-MeetupConfiguration02.png)
 
@@ -77,7 +77,7 @@ This will then prompt your to connect to Meetup.
 
 ## Get Group information
 
-Retrieve a group information
+Retrieve a Meetup group information
 
 ```powershell
 Get-MeetupGroup -Groupname FrenchPSUG
@@ -93,7 +93,7 @@ Get-MeetupGroup -Groupname FrenchPSUG
 
 ### Upcoming events
 
-Retrieve upcoming event(s) for a group
+Retrieve upcoming event(s) for a Meetup group
 
 ```powershell
 Get-MeetupEvent -Groupname FrenchPSUG -status upcoming
@@ -103,7 +103,7 @@ Get-MeetupEvent -Groupname FrenchPSUG -status upcoming
 
 ### Past events
 
-Retrieve past event(s) for a group
+Retrieve past event(s) for a Meetup group
 
 ```powershell
 Get-MeetupEvent -GroupName FrenchPSUG -status past -page 2
@@ -141,11 +141,13 @@ Here is the event created in Meetup
 
 ## API permission scopes
 
-Note that you need to specify the scope of the actions you want to perform
+The API permission scopes are set when the authentication occur in `Get-OAuthAccessToken`.
 
-https://www.meetup.com/meetup_api/auth/#event_management_scope
+Currently it is requesting the following permission scopes: `basic`,`reporting`, `event_management`
 
-Here are the current scopes used by the private function `Get-OAuthAccessToken`
+More permission scopes are available here: https://www.meetup.com/meetup_api/auth/#event_management_scope
+
+You can take a look a the header passed to the API here:
 
 ```powershell
 $Headers = @{
@@ -153,6 +155,8 @@ $Headers = @{
     'X-Accepted-OAuth-Scopes' = "basic", "reporting", "event_management"
 }
 ```
+
+See this line: [Header of Get-OauthAccessToken](/MeetupPS/private/Get-OAuthAccessToken.ps1#L24)
 
 <a name="Resources"/>
 
