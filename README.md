@@ -145,7 +145,21 @@ The API permission scopes are set when the authentication occur in `Get-OAuthAcc
 
 Currently it is requesting the following permission scopes: `basic`,`reporting`, `event_management`
 
-More permission scopes are available here: https://www.meetup.com/meetup_api/auth/#event_management_scope
+More permission scopes are available here: https://www.meetup.com/meetup_api/auth/#oauth2-scopes
+
+| scope | permission |
+| --- | --- |
+| ageless | Replaces the one hour expiry time from oauth2 tokens with a limit of up to two weeks |
+| basic | Access to basic Meetup group info and creating and editing Events and RSVP's, posting photos in version 2 API's and below |
+| event_management | Allows the authorized application to create and make modifications to events in your Meetup groups on your behalf |
+| group_edit | Allows the authorized application to edit the settings of groups you organize on your behalf |
+| group_content_edit | Allows the authorized application to create, modify and delete group content on your behalf |
+| group_join | Allows the authorized application to join new Meetup groups on your behalf |
+| messaging | Enables Member to Member messaging (this is now deprecated) |
+| profile_edit | Allows the authorized application to edit your profile information on your behalf |
+| reporting | Allows the authorized application to block and unblock other members and submit abuse reports on your behalf |
+| rsvp | Allows the authorized application to RSVP you to events on your behalf |
+
 
 You can take a look a the header passed to the API here:
 
