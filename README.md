@@ -41,8 +41,8 @@ Fortunately you only need to do this once.
 Register a new Oauth Consumer on the [Meetup API Oauth Consumer portal](https://secure.meetup.com/meetup_api/oauth_consumers/)
 
 * `Consumer Name` Provide a name for your Oauth Consumer
-* `Application Website` Can be pretty much anything, here i used `https://github.com/lazywinadmin/MeetupPS`
-* `Redirect URI` Can be pretty much anything, here i used `https://github.com/lazywinadmin/MeetupPS`
+* `Application Website` Here I used `https://github.com/lazywinadmin/MeetupPS`
+* `Redirect URI` Here I used `https://github.com/lazywinadmin/MeetupPS`
 * Agree with terms
 
 ![image-center](/media/MeetupPS-RegisterOauthConsumer01.png)
