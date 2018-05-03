@@ -2,7 +2,7 @@
 function Get-MeetupGroupMember {
     <#
 .SYNOPSIS
-    Create a Meetup event
+    Get the member of a meetup group
 .PARAMETER GroupName
     Specify GroupName
 .PARAMETER Page
@@ -56,7 +56,7 @@ function Get-MeetupGroupMember {
             Uri     = "https://api.meetup.com/$GroupName/members?order=$order&page=$page"
         }
 
-        Write-Verbose -Message "[$FunctionName] Querying API..."
+        Write-Verbose -Message "[$FunctionName] Querying API '$($Splat.uri)'..."
         (Invoke-RestMethod @splat)
 
     }
