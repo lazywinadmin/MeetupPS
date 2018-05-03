@@ -31,10 +31,8 @@
         $FunctionName = (Get-Variable -name MyInvocation -Scope 0 -ValueOnly).MyCommand
 
         $Url = "https://api.meetup.com/$GroupName/events?status=$Status&page=$page"
-        Write-Verbose -Message "[$FunctionName] Querying Url = '$Url'"
-        $events = invoke-restmethod -uri $Url -UseDefaultCredentials
-
-        Write-Output -InputObject $events
+        Write-Verbose -Message "[$FunctionName] Querying API '$Url'..."
+        (invoke-restmethod -uri $Url -UseDefaultCredentials)
     }
     catch {$PSCmdlet.ThrowTerminatingError($_)}
 }
