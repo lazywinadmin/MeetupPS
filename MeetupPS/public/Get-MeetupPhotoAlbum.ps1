@@ -3,16 +3,16 @@ function Get-MeetupPhotoAlbum {
 .SYNOPSIS
     Retrieve photo albums for a specific Meetup group.
 .PARAMETER GroupName
-    Specify the name of the group
+    Specify the name of the group.
 .PARAMETER AlbumId
-    Specify the unique identifier of a specific photo album
+    Specify the unique identifier of a specific photo album.
 .PARAMETER Page
     Number of entries to retrieve.
-    Default is 200
-    Cannot be used in conjunction with AlbumId
+    Default is 200.
+    Cannot be used in conjunction with AlbumId.
 .PARAMETER Offset
     Offsets the number of entries to return for pagination in conjunction with Page.
-    Cannot be used in conjunction with AlbumId
+    Cannot be used in conjunction with AlbumId.
 .EXAMPLE
     Get-MeetupPhotoAlbum -GroupName FrenchPSUG
 
