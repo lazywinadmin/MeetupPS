@@ -1,0 +1,13 @@
+{
+    "powershell.codeFormatting.openBraceOnSameLine": false,
+    "powershell.codeFormatting.newLineAfterOpenBrace": true,
+    "powershell.codeFormatting.preset": "Allman",
+    "editor.renderWhitespace": "all",
+    "editor.tabSize": 4,
+    "editor.detectIndentation": false,
+    "files.defaultLanguage": "powershell",
+    "[json]": {
+      "editor.tabSize": 2
+    },
+    "files.trimTrailingWhitespace": true
+}
