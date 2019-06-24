@@ -12,12 +12,19 @@ function Set-MeetupConfiguration {
         https://github.com/lazywinadmin/MeetupPS
     #>
     [CmdletBinding()]
-    PARAM($ClientID,$Secret)
+    PARAM(
+        [Parameter(Mandatory=$true)]
+        $ClientID,
+        [Parameter(Mandatory = $true)]
+        $Secret,
+        $RedirectUri = 'https://github.com/lazywinadmin/MeetupPS',
+        $Scope = ("basic", "reporting", "event_management")
+        )
     TRY{
         $FunctionName = (Get-Variable -name MyInvocation -Scope 0 -ValueOnly).MyCommand
 
         # Retrieve Code
-        $Url = "https://secure.meetup.com/oauth2/authorize?client_id=$ClientID&response_type=code&redirect_uri=https://github.com/lazywinadmin/MeetupPS"
+        $Url = "https://secure.meetup.com/oauth2/authorize?client_id=$ClientID&response_type=code&redirect_uri=$RedirectUri"
         Write-Verbose -Message "[$FunctionName] Querying Url = '$Url'"
 
         # Ask user to authenticate and return Code only
@@ -28,7 +35,7 @@ function Set-MeetupConfiguration {
 
         # Retrieve Access Token
         Write-Verbose -Message "[$FunctionName] Querying Access Token with ClientID '$ClientId'"
-        $script:MeetupAccessToken = Get-OAuthAccessToken -ClientID $clientID -Secret $Secret -Code $Code
+        $script:MeetupAccessToken = Get-OAuthAccessToken -ClientID $clientID -Secret $Secret -Code $Code -RedirectUri $RedirectUri -Scopes $Scope
     }Catch
     {
         $PSCmdlet.ThrowTerminatingError($_)
