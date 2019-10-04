@@ -20,13 +20,13 @@ try{
     ################
     # EDIT THIS PART
     $guid = '90269121-95b2-4391-9552-5c4b0f052f67'
-    $moduleName = "SpaceX" # get from source control or module ?
+    $moduleName = "MeetupPS" # get from source control or module ?
     $author = 'Francois-Xavier Cat' # fetch from source or module
-    $description = 'SpaceX is a module wrapped around the spacex API (github.com/r-spacex/SpaceX-API)' # fetch from module ?
+    $description = 'MeetupPS is a module to interact with the meetup.com api' # fetch from module ?
     $companyName = 'lazywinadmin.com' # fetch from module ?
     $projectUri = "https://github.com/lazywinadmin/$moduleName" # get from module of from source control, env var
     $licenseUri = "https://github.com/lazywinadmin/$moduleName/blob/master/LICENSE.md"
-    $tags = @('SpaceX', 'Falcon', 'Space', 'Rocket', 'ElonMusk')
+    $tags = @('Meetup', 'Meetup.com', 'UserGroup','Meeting')
     ################
 
     #$rootpath = Split-Path -path $PSScriptRoot -parent
