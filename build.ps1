@@ -42,6 +42,7 @@ try{
 
     $env:moduleName = $moduleName
     $env:modulePath = $modulePath
+    $env:buildOutputPath
 
     $requirementsFilePath = "$buildPath\requirements.psd1" # contains dependencies
     $buildTasksFilePath = "$buildPath\tasks.build.ps1" # contains tasks to execute
