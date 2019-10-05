@@ -13,7 +13,7 @@ if(
 {
     Deploy -Name Module {
         By -DeploymentType PSGalleryModule {
-            FromSource -Source '/home/fx/code/MeetupPS/buildoutput/MeetupPS' #(Join-Path -path (Split-Path -Path $PSScriptRoot -Parent) -ChildPath "BuildOutput/$env:moduleName")
+            FromSource -Source (Join-Path -path (Split-Path -Path $PSScriptRoot -Parent) -ChildPath "BuildOutput" -AdditionalChildPath $env:moduleName)
             To -Targets PSGallery
             WithOptions -Options @{
                 ApiKey = $env:PSGalleryKey
