@@ -14,7 +14,7 @@ if(
 {
     Deploy -Name Module {
         By -DeploymentType PSGalleryModule {
-            FromSource -Source (Join-Path -path $env:buildOutputPath -ChildPath $env:moduleName)
+            FromSource -Source $env:modulePath
             To -Targets PSGallery
             WithOptions -Options @{
                 ApiKey = $env:PSGalleryKey
