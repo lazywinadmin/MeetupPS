@@ -30,6 +30,7 @@ else
     "`t* buildoutputpath (Current: $env:buildOutputPath) `n" +
     "`t* modulepath (Current: $env:modulePath) `n" +
     "`t* modulename (Current: $env:modulename) `n" +
+    "`t* psgallerykey (Current: $env:PSGalleryKey) `n" +
     "`t* Your commit message includes !deploy (Current: $ENV:BHCommitMessage)" |
         Write-Host
 }
