@@ -10,10 +10,11 @@ Change History
 #>
 [CmdletBinding()]
 Param(
-    [string[]]$tasks=@('build'), # @('build','test','deploy')
+    #[string[]]$tasks,
     [string]$GalleryRepository,
     [pscredential]$GalleryCredential,
     [string]$GalleryProxy,
+    [string[]]$tasks, # @('build','test','deploy')
     [switch]$InstallDependencies
     )
 try{
@@ -100,6 +101,5 @@ try{
     }
     exit 0
 }catch{
-    Write-Warning -Message "You might miss some dependencies, run -InstallDependencies the first time."
     throw $_
 }

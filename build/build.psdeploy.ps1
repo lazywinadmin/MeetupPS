@@ -5,15 +5,15 @@
     $ENV:BH* are set by the BuildHelpers module
 #>
 if(
-    $env:modulePath -and
-    $env:BHBuildSystem -ne 'Unknown' -and
-    $env:BHBranchName -eq "master" -and
-    $env:BHCommitMessage -match '!deploy'
+    $env:modulePath #-and
+    #$env:BHBuildSystem -ne 'Unknown' -and
+    #$env:BHBranchName -eq "master" -and
+    #$env:BHCommitMessage -match '!deploy'
 )
 {
     Deploy -Name Module {
         By -DeploymentType PSGalleryModule {
-            FromSource -Source (Join-Path -path (Split-Path -Path $PSScriptRoot -Parent) -ChildPath "BuildOutput\$env:moduleName")
+            FromSource -Source '/home/fx/code/MeetupPS/buildoutput/MeetupPS' #(Join-Path -path (Split-Path -Path $PSScriptRoot -Parent) -ChildPath "BuildOutput/$env:moduleName")
             To -Targets PSGallery
             WithOptions -Options @{
                 ApiKey = $env:PSGalleryKey
