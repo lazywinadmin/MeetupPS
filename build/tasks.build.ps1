@@ -9,7 +9,8 @@ task -Name setEnvironment {
     Set-BuildEnvironment -Path $rootpath
 
     # Read back the env vars
-    Get-Item ENV:* | Sort-Object -property Name
+    Get-Item ENV:* |
+        Sort-Object -property Name
 }
 
 task -Name build {
@@ -35,13 +36,13 @@ task -Name build {
     # Append existing PSM1 content from source
     if(Test-Path -Path "$srcPath\source.psm1")
     {
-        get-content -path "$srcPath\source.psm1"|
+        Get-Content -path "$srcPath\source.psm1" |
             Out-File -FilePath "$modulePath\$moduleName.psm1" -Append -Encoding utf8
     }
 
     # Copy the Manifest to the build (psd1)
     Copy-Item -Path "$srcPath\source.psd1" -Destination $modulePath
-    Rename-Item -Path "$modulePath\source.psd1" -NewName "$moduleName.psd1" -PassThru
+    Rename-Item -Path "$modulePath\source.psd1" -NewName "$moduleName.psd1" -PassThru -Force
 
     # Find next module version (BuildHelpers module)
     Write-Verbose -Message "Find next module version (BuildHelpers module)"
@@ -74,8 +75,8 @@ task -Name clean {
 }
 
 task -Name deploy {
-    $PsDeployFile = Join-Path -Path $buildPath -ChildPath 'build.psdeploy.ps1'
-    Invoke-PSDeploy -Path $PsDeployFile -Force
+    $PSDeployFile = Join-Path -Path $buildPath -ChildPath 'build.psdeploy.ps1'
+    Invoke-PSDeploy -Path $PSDeployFile -Force
 }
 
 task -Name test {

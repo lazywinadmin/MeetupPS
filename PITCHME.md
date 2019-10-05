@@ -1,4 +1,4 @@
-# MeetupPS PowerShell module
+# Let's Get Started
 
 ---
 
