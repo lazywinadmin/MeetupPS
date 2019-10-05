@@ -22,7 +22,7 @@ task -Name build {
     # Create build output directory if does not exist yet
     if(-not (Test-Path -path $modulePath))
     {
-        [void](New-Item -Path $modulePath -ItemType Directory)
+        New-Item -Path $modulePath -ItemType Directory
     }
 
     # Build PSM1 file with all the functions
@@ -35,12 +35,13 @@ task -Name build {
     # Append existing PSM1 content from source
     if(Test-Path -Path "$srcPath\source.psm1")
     {
-        get-content -path "$srcPath\source.psm1"| Out-File -FilePath "$modulePath\$moduleName.psm1" -Append -Encoding utf8
+        get-content -path "$srcPath\source.psm1"|
+            Out-File -FilePath "$modulePath\$moduleName.psm1" -Append -Encoding utf8
     }
 
     # Copy the Manifest to the build (psd1)
     Copy-Item -Path "$srcPath\source.psd1" -Destination $modulePath
-    Rename-Item -Path "$modulePath\source.psd1" -NewName "$moduleName.psd1"
+    Rename-Item -Path "$modulePath\source.psd1" -NewName "$moduleName.psd1" -PassThru
 
     # Find next module version (BuildHelpers module)
     Write-Verbose -Message "Find next module version (BuildHelpers module)"
@@ -73,7 +74,8 @@ task -Name clean {
 }
 
 task -Name deploy {
-    Invoke-PSDeploy -Path "$buildPath\.psdeploy.ps1" -Force
+    $PsDeployFile = Join-Path -Path $buildPath -ChildPath 'build.psdeploy.ps1'
+    Invoke-PSDeploy -Path $PsDeployFile -Force
 }
 
 task -Name test {

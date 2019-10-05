@@ -10,10 +10,11 @@ Change History
 #>
 [CmdletBinding()]
 Param(
-    [string[]]$tasks=@('build'), # @('build','test','deploy')
+    #[string[]]$tasks,
     [string]$GalleryRepository,
     [pscredential]$GalleryCredential,
     [string]$GalleryProxy,
+    [string[]]$tasks, # @('build','test','deploy')
     [switch]$InstallDependencies
     )
 try{
@@ -41,6 +42,7 @@ try{
 
     $env:moduleName = $moduleName
     $env:modulePath = $modulePath
+    $env:buildOutputPath
 
     $requirementsFilePath = "$buildPath\requirements.psd1" # contains dependencies
     $buildTasksFilePath = "$buildPath\tasks.build.ps1" # contains tasks to execute
@@ -100,6 +102,5 @@ try{
     }
     exit 0
 }catch{
-    Write-Warning -Message "You might miss some dependencies, run -InstallDependencies the first time."
     throw $_
 }
